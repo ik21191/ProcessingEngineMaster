@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mps</groupId>
+    <artifactId>ProcessingEngineL2</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mainClass>com.mps.processing.start.Start</mainClass>
+    </properties>
+    
+    
+      <dependencies>
+  
+    <!-- APACHE SAPRK -->
+	<!-- Spark dependency -->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_2.11</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+    
+    <dependency>
+	    <groupId>org.apache.spark</groupId>
+	    <artifactId>spark-core_2.11</artifactId>
+	    <version>2.2.0</version>
+  	</dependency>
+  	
+  		<dependency>
+   		<groupId>org.mongodb.spark</groupId>
+	   	<artifactId>mongo-spark-connector_2.11</artifactId>
+	   	<version>2.2.0</version>
+	</dependency>
+  	
+  	<!-- JUNIT TEST -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- MONGO DB -->
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>3.5.0</version>
+    </dependency>
+	<dependency>
+	    <groupId>org.mongodb</groupId>
+	    <artifactId>bson</artifactId>
+	    <version>3.5.0</version>
+	</dependency>  	
+  	
+ 	<!-- SCALA Dependency -->
+    <dependency>
+    	<groupId>org.scala-lang</groupId>
+    	<artifactId>scala-library</artifactId>
+    	<version>2.11.8</version>
+	</dependency>
+	
+	<!-- Javax JSON Dependency for MyData Table  --> 
+     <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+	 <dependency>
+	     <groupId>javax.json</groupId>
+	     <artifactId>javax.json-api</artifactId>
+	     <version>1.0</version>
+	 </dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+	<dependency>
+	    <groupId>org.mariadb.jdbc</groupId>
+	    <artifactId>mariadb-java-client</artifactId>
+	    <version>1.1.7</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.googlecode.java-ipv6/java-ipv6 -->
+	<dependency>
+	    <groupId>com.googlecode.java-ipv6</groupId>
+	    <artifactId>java-ipv6</artifactId>
+	    <version>0.15</version>
+	</dependency>
+    
+  </dependencies>
+    
+    <!--
+   <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.mps.start.Start</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    -->
+    
+    
+    <!-- for building SINGLE FAT JAR with all dependencies-->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.mps.start.Start</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+    
+    <name>ProcessingEngineL2</name>
+    <organization>
+    	<name>KSV</name>
+    </organization>
+</project>

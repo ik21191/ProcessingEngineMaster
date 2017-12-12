@@ -1,0 +1,6 @@
+*.class
+*.lst
+*.jar
+*.MF
+ProcessingEngineL2
+maven-archiver
